@@ -257,6 +257,16 @@ public final class AssetTransfer implements ContractInterface {
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
 
+        // Create asset class
+        Asset asset = genson.deserialize(assetJSON, Asset.class);
+
+        // Check wheather the same owner is trying to duplicate the asset
+        if (asset.getOwner().equals(newOwner)) {
+            String errorMessage = String.format("Original owner cannot duplicate the asset");
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
+        }
+
         // Get existing assets in the chaincode
         QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
 
@@ -274,8 +284,6 @@ public final class AssetTransfer implements ContractInterface {
 
         // Create asset string
         String newAssetID = "asset" + String.valueOf(newId);
-
-        Asset asset = genson.deserialize(assetJSON, Asset.class);
 
         Asset dupAsset = new Asset(newAssetID, asset.getColor(), asset.getSize(), newOwner, asset.getAppraisedValue());
         //Use a Genson to conver the Asset into string, sort it alphabetically and serialize it into a json string

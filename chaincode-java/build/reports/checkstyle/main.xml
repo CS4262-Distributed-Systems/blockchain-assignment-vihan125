@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<checkstyle version="8.21">
-<file name="/home/vihan/go/src/github.com/vihan125/fabric-samples/asset-transfer-basic/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/Asset.java">
-</file>
-<file name="/home/vihan/go/src/github.com/vihan125/fabric-samples/asset-transfer-basic/chaincode-java/src/main/java/org/hyperledger/fabric/samples/assettransfer/AssetTransfer.java">
-</file>
-</checkstyle>
